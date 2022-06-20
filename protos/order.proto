@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+
+option go_package = "github.com/Dann-Go/InnoTaxiOrderService/protos";
+
+service OrderService {
+  rpc CreateOrder (UserRequest) returns (UserResponse);
+  rpc GetOrderById (Ids) returns (OrderResponse);
+  rpc FinishOrder (DriverId) returns (FinishOrderResponse);
+}
+
+message UserRequest{
+  int32 UserId = 1;
+  string TaxiType = 2;
+  string FromDest = 3;
+  string ToDest = 4;
+}
+
+message UserResponse{
+  string Response = 1;
+}
+
+message Ids{
+  int32 DriverId = 1;
+  int32 UserId = 2;
+}
+
+message OrderResponse{
+  int32 Id = 1;
+  int32 UserId = 2;
+  int32 DriverId = 3;
+  string FromDest = 4;
+  string ToDest = 5;
+  string TaxiType = 6;
+  string Date = 7;
+  string Status = 8;
+}
+
+message DriverId{
+  int32 DriverId = 1;
+}
+
+message FinishOrderResponse {
+  string Response = 1;
+}
